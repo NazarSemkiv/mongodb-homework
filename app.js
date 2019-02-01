@@ -21,6 +21,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/api', api);
 
+//error handling middleware
+app.use(function (err, req, res, next) {
+    res.status(422).send({error: err.message});
+});
+
 const port = 4040;
 
 app.listen(port, () => {
